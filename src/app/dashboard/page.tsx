@@ -4,8 +4,7 @@ import Login from "@/components/login"
 import Register from "@/components/register"
 import TextArea from "@/components/textArea"
 import Todo from "@/components/todo"
-import { TodoContext }
-    from "@/contexts/todoContext"
+import { TodoContext } from "@/contexts/todoContext"
 import { UserContext } from "@/contexts/userContext"
 import React, { useContext, useEffect } from "react"
 
@@ -15,7 +14,6 @@ const page = () => {
     useEffect(() => {
         GetTodos()
     }, [])
-
 
     return (
         <h1 className="flex min-h-screen flex-col items-center justify-between p-24 sm:p-0 sm:pt-24">
@@ -34,14 +32,13 @@ const page = () => {
                             id={todo.id}
                             text={todo.text}
                             color={todo.color}
-                            createdAt={todo.createdAt}></Todo>
+                            createdAt={todo.createdAt}
+                        ></Todo>
                     ))}
                 </div>
             </div>
             <div className=" flex flex-col w-[100%] mt-[20px]">
-                {todos.length > 0 && (
-                    <span className="pl-10">Outras</span>
-                )}
+                {todos.length > 0 && <span className="pl-10">Outras</span>}
                 <div className="w-[100%] flex flex-wrap sm:justify-center  ">
                     {todos.map((todo) => (
                         <Todo
@@ -51,7 +48,8 @@ const page = () => {
                             id={todo.id}
                             text={todo.text}
                             color={todo.color}
-                            createdAt={todo.createdAt}></Todo>
+                            createdAt={todo.createdAt}
+                        ></Todo>
                     ))}
                 </div>
             </div>

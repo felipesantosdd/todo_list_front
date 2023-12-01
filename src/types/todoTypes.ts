@@ -14,7 +14,6 @@ export type newToDoRequestType = Pick<
     todoType,
     "title" | "text" | "isFavorited"
 >
-export type updateToDoRequestType = Partial<Pick<
-    todoType,
-    "title" | "text" | "color" | "isFavorited"
->>
+export type updateToDoRequestType = Partial<
+    Pick<todoType, "title" | "text" | "color" | "isFavorited">
+>

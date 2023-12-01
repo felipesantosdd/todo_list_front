@@ -1,5 +1,9 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
-import { newToDoRequestType, todoType, updateToDoRequestType } from "./todoTypes"
+import {
+    newToDoRequestType,
+    todoType,
+    updateToDoRequestType
+} from "./todoTypes"
 
 export type ContextProps = {
     todos: todoType[]

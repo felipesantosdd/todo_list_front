@@ -5,7 +5,11 @@ import TodoDeleteService from "@/services/todos/delete"
 import TodoGetAllService from "@/services/todos/getAll"
 import TodoUpdateService from "@/services/todos/update"
 import { ContextProps, ProviderType } from "@/types/todoContextType"
-import { newToDoRequestType, todoType, updateToDoRequestType } from "@/types/todoTypes"
+import {
+    newToDoRequestType,
+    todoType,
+    updateToDoRequestType
+} from "@/types/todoTypes"
 import { createContext, useState } from "react"
 
 export const TodoContext = createContext<ContextProps>({} as ContextProps)
@@ -27,10 +31,9 @@ export function TodoProvider({ children }: ProviderType) {
             setTodos([])
             setFavoritas([])
             response.map((todo) => {
-                todo.isFavorited === true ?
-                    setFavoritas(prevFavoritas => [...prevFavoritas, todo])
-                    :
-                    setTodos(prevTodos => [...prevTodos, todo]);
+                todo.isFavorited === true
+                    ? setFavoritas((prevFavoritas) => [...prevFavoritas, todo])
+                    : setTodos((prevTodos) => [...prevTodos, todo])
             })
             console.log(response)
         } catch (error: any) {
@@ -65,41 +68,44 @@ export function TodoProvider({ children }: ProviderType) {
         }
     }
 
-
-    async function UpdateTodos(todoId: string, todoData: updateToDoRequestType) {
-        const validProps = ['color', 'isFavorited'];
-        const hasInvalidProps = Object.keys(todoData).some(prop => validProps.includes(prop));
+    async function UpdateTodos(
+        todoId: string,
+        todoData: updateToDoRequestType
+    ) {
+        const validProps = ["color", "isFavorited"]
+        const hasInvalidProps = Object.keys(todoData).some((prop) =>
+            validProps.includes(prop)
+        )
 
         try {
-            await TodoUpdateService(todoId, todoData);
-            GetTodos();
+            await TodoUpdateService(todoId, todoData)
+            GetTodos()
 
             if (!hasInvalidProps) {
-                SuccessAlert("Todo Atualizado com sucesso!");
+                SuccessAlert("Todo Atualizado com sucesso!")
             }
         } catch (error: any) {
             if (error?.response?.data?.error) {
-                console.error(error.response.data.error);
+                console.error(error.response.data.error)
 
                 error.response.data.error === "Sessão inválida"
                     ? logout()
-                    : ErrorAlert(error.response.data.error);
+                    : ErrorAlert(error.response.data.error)
             } else {
-                console.error(error);
+                console.error(error)
                 ErrorAlert(
                     "Ocorreu um erro interno. Por favor, tente novamente mais tarde ou entre em contato com o suporte técnico"
-                );
+                )
             }
         }
     }
-
 
     async function DeleteTodo(todoId: string) {
         try {
             console.log(todoId)
             await TodoDeleteService(todoId)
             GetTodos()
-            SuccessAlert("Todo Deletado com sucesso!");
+            SuccessAlert("Todo Deletado com sucesso!")
         } catch (error: any) {
             if (error?.response?.data?.error) {
                 console.error(error.response.data.error)
