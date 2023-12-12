@@ -1,5 +1,5 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseURL: "https://note-api-ewss.onrender.com"
+    baseURL: process.env.API_HOST || "http://localhost:3001"
 })
