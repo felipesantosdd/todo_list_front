@@ -35,7 +35,6 @@ export function TodoProvider({ children }: ProviderType) {
                     ? setFavoritas((prevFavoritas) => [...prevFavoritas, todo])
                     : setTodos((prevTodos) => [...prevTodos, todo])
             })
-            console.log(response)
         } catch (error: any) {
             if (error?.response?.data?.error) {
                 console.error(error.response.data.error)
@@ -102,7 +101,6 @@ export function TodoProvider({ children }: ProviderType) {
 
     async function DeleteTodo(todoId: string) {
         try {
-            console.log(todoId)
             await TodoDeleteService(todoId)
             GetTodos()
             SuccessAlert("Todo Deletado com sucesso!")

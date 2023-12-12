@@ -92,7 +92,10 @@ const Todo = ({ id, title, text, color, isFavorited }: todoType) => {
             </div>
             <div className="p-5 h-[75%]">
                 {edit === false ? (
-                    <span className="font-inter ">{text}</span>
+                    <span
+                        className="font-inter"
+                        dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, '<br />') }}
+                    />
                 ) : (
                     <textarea
                         style={{ backgroundColor: color }}

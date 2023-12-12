@@ -1,4 +1,4 @@
-import axios from "axios"
+import "reflect-metadata"
 import { api } from "../api"
 import { loginResponseType, loginRequestType } from "@/types/userTypes"
 
