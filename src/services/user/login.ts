@@ -5,6 +5,7 @@ import { loginResponseType, loginRequestType } from "@/types/userTypes"
 async function UserLoginService(
     data: loginRequestType
 ): Promise<loginResponseType> {
+    console.log(process.env)
     const response = await api.post("/users/login", data)
     return response.data
 }
